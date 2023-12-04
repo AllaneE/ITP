@@ -22,11 +22,11 @@ Tabela criarTab(){
         scanf("%s\n", novaTabela.colunas[i].nomeColuna);
 
         printf("A coluna é a chave primaria da coluna?\n");
-        scanf("%d\n", resp);
+        scanf("%s\n", resp);
         toLowerCase(resp);
 
         printf("Qual o tipo de dado coluna? (0 - int, 1 - double, 2 - float, 3 - char, 4 - string\n");
-        scanf("%s\n", &novaTabela.colunas[i].tipoColuna);
+        scanf("%d\n", &novaTabela.colunas[i].tipoColuna);
     
         // converter a resposta em valores inteiros
         if (strcmp(resp,"sim") == 0) {
