@@ -1,14 +1,7 @@
 #include <stdio.h>
 #include <string.h>
 #include <stdlib.h>
-#include <ctype.h>
 #include "meusStruct.h"
-
-//Função para converter string para minúscula
-void toLowerCase(char str[]) {
-    for (int i = 0; str[i]; i++) {
-        str[i] = tolower(str[i]);
-    }
 
 // Função para criar tabela
 Tabela criarTab(){
