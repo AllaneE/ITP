@@ -4,11 +4,15 @@
 #include "meusStruct.h"
 
 void listarTabela(){
-    char nomeTabela;
+    char nomeTabela[50];
     printf("Qual o nome da tabela?\n");
-    scanf("%s",&nomeTabela);
+    scanf("%s", nomeTabela);
     
-    FILE *arquivo fopen(nomeTabela, "r");
+    char nomeArquivo[100]; // Variável para armazenar o nome do arquivo
+    snprintf(nomeArquivo, sizeof(nomeArquivo), "%s.bin", nomeTabela); // Adiciona a extensão .bin ao nome do arquivo
+
+    FILE *arquivo;
+    arquivo = fopen(nomeArquivo , "rb");
 
     if(arquivo==NULL){
         printf("Error ao abrir arquivo!\n");
@@ -18,14 +22,14 @@ void listarTabela(){
 
     Tabela tabela;
     fread(&tabela, sizeof(Tabela), 1, arquivo);
-
+    //Listar tabela
     for(int i=0; i<tabela.numeroColuna; i++){
-        printf("%s\t", tabela.colunas[i].nomeTabela);
+        printf("%s\t", tabela.colunas[i].nomeColuna);
     }
     printf("\n");
 
     Linha leitura;
-    while (fread(&leituraLinha, sizeof(Linha), 1, arquivo) == 1) {
+    while (fread(&leitura, sizeof(Linha), 1, arquivo) == 1) {
         printf("%d\t", leitura.chavePrimaria);
         printf("%s\t", leitura.colunaString);
         printf("%s\t", leitura.colunaChar);
