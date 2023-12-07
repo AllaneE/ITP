@@ -48,3 +48,11 @@ Tabela criarTab(){
     
     return novaTabela;
 }
+
+void apagarArquivo(const char *nomeArquivo){
+    if(remove(*nomeArquivo)==0){
+        printf("Arquivo '%s' apagado com sucesso.\n", nomeArquivo);
+    }else{
+        prinf("Erro ao excluir")
+    }
+}

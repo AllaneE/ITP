@@ -14,6 +14,16 @@ typedef struct{
     int numeroColuna;
 } Tabela;
 
+typedef struct{
+    int chavePrimaria;
+    char colunaChar[50];
+    int colunaInt;
+    float colunaFloat;
+    double colunaDouble;
+    char colunaString[50];
+    int numeroLinha;
+}Linha;
+
 //Função para converter string para minúscula
 void toLowerCase(char str[]) {
     for (int i = 0; str[i]; i++) {
