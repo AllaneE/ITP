@@ -1,0 +1,10 @@
+Nome da Tabela: teste1
+Número de Colunas: 2
+Coluna 1:
+	Nome da Coluna: PK
+	Tipo de Dado: 0
+	Chave Primária: Sim
+Coluna 2:
+	Nome da Coluna: aaaaaa
+	Tipo de Dado: 3
+	Chave Primária: Não

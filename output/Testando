@@ -1,0 +1,14 @@
+Nome da Tabela: Testando
+Número de Colunas: 3
+Coluna 1:
+	Nome da Coluna: PK
+	Tipo de Dado: 0
+	Chave Primária: Sim
+Coluna 2:
+	Nome da Coluna: asdsadasd
+	Tipo de Dado: 2
+	Chave Primária: Não
+Coluna 3:
+	Nome da Coluna: sdads
+	Tipo de Dado: 3
+	Chave Primária: Não

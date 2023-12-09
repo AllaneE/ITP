@@ -3,7 +3,26 @@
 #include <stdlib.h>
 #include "meusStruct.h"
 
+void salvarTabela(const Tabela *tabela, const char *nomeArquivo) {
+    FILE *arquivo = fopen(nomeArquivo, "w");
 
+    if (arquivo != NULL) {
+        fprintf(arquivo, "Nome da Tabela: %s\n", tabela->nomeTabela);
+        fprintf(arquivo, "Número de Colunas: %d\n", tabela->numeroColuna);
+
+        for (int i = 0; i < tabela->numeroColuna; i++) {
+            fprintf(arquivo, "Coluna %d:\n", i + 1);
+            fprintf(arquivo, "\tNome da Coluna: %s\n", tabela->colunas[i].nomeColuna);
+            fprintf(arquivo, "\tTipo de Dado: %d\n", tabela->colunas[i].tipoColuna);
+            fprintf(arquivo, "\tChave Primária: %s\n", tabela->colunas[i].chavePrimaria ? "Sim" : "Não");
+        }
+
+        fclose(arquivo);
+        printf("Informações da Tabela salvas com sucesso.\n");
+    } else {
+        printf("Erro ao abrir o arquivo para escrita.\n");
+    }
+}
 // Função para criar tabela
 Tabela criarTab(){
     Tabela novaTabela;
@@ -23,8 +42,12 @@ Tabela criarTab(){
         printf("Qual o nome da coluna?\n");
         scanf("%s", novaTabela.colunas[i].nomeColuna);
 
+        printf("Qual o tipo de dado da coluna? (0 - int, 1 - double, 2 - float, 3 - char, 4 - string\n");
+        scanf("%d", &novaTabela.colunas[i].tipoColuna);
+
         //define a chave primaria se nao houver uma ja definida
-        if(pkDefinida != 1){
+        //confere que o tipo de dado da coluna seja inteiro
+        if(novaTabela.colunas[i].tipoColuna == 0 && pkDefinida != 1 ){
             printf("A coluna é a chave primaria da coluna?(sim ou nao)\n");
             scanf("%s", resp);
         }
@@ -38,29 +61,33 @@ Tabela criarTab(){
             novaTabela.colunas[i].chavePrimaria = 1;
             //a chave primaria foi definida entao nao perguntamos mais
             pkDefinida = 1;
+            strcpy(resp, "nao");
         }else{
             novaTabela.colunas[i].chavePrimaria = 0;
         } 
-
-        printf("Qual o tipo de dado da coluna? (0 - int, 1 - double, 2 - float, 3 - char, 4 - string\n");
-        scanf("%d", &novaTabela.colunas[i].tipoColuna);
-    
-          
     }
 
     //Salvar informações da tabela em um arquivo;
-    FILE *arquivo = fopen(novaTabela.nomeTabela, "ab");
-    if(arquivo != NULL){
-        fwrite(&novaTabela, sizeof(Tabela), 1, arquivo);
-        fclose(arquivo);
-        printf("Tabela criada\n");
-    }else{
-        printf("Erro\n");
-    }
+    salvarTabela(&novaTabela , novaTabela.nomeTabela);
     
     return novaTabela;
 }
 
+//Criar nova linha na tabela
+//void novaLinha(const char *nomeArquivo){
+    
+    /* 
+    a. Usuário deve informar o nome da tabela (recebe como atributo o nome da tabela)
+    b. sistema deve solicitar os valores de cada uma das colunas
+    c. sistema deve verificar a chave primária
+        i. Em uma tabela deve existir um e apenas um valor de chave
+        primária. Se o usuário informar uma chave que já existe,
+        sistema deve emitir uma mensagem de erro e não deve inserir
+        o registro */
+
+//}
+
+//Apaga um arquivo
 void apagarArquivo(const char *nomeArquivo) {
     if(remove(nomeArquivo)==0){
         printf("Arquivo '%s' apagado com sucesso.\n", nomeArquivo);

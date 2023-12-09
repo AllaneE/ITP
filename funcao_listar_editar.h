@@ -13,7 +13,7 @@ void listarTabela(){
     snprintf(nomeArquivo, sizeof(nomeArquivo), "%s.bin", nomeTabela); // Adiciona a extensão .bin ao nome do arquivo
 
     FILE *arquivo;
-    arquivo = fopen(nomeArquivo , "rb");
+    arquivo = fopen(nomeArquivo , "r");
 
     if(arquivo==NULL){
         printf("Error ao abrir arquivo!\n");
@@ -64,4 +64,23 @@ void listarTodasTabelas(const char *caminho){
     }
     printf("--------------------------\n");
     closedir(diretorio);
+}
+
+//Listar dados de uma tabela(os dados deverão ser obtidos a partir do arquivo que armazena)
+void listarDadosTabela(const char *nomeArquivo){
+    FILE *arquivo = fopen(nomeArquivo, "r");
+
+    if (arquivo == NULL) {
+        perror("Erro ao abrir o arquivo");
+        exit(EXIT_FAILURE);
+    }
+
+    printf("Conteúdo do arquivo '%s':\n", nomeArquivo);
+
+    char caractere;
+    while ((caractere = fgetc(arquivo)) != EOF) {
+        printf("%c", caractere);
+    }
+
+    fclose(arquivo);
 }
