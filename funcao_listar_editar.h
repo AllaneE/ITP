@@ -1,6 +1,7 @@
 #include <stdio.h>
 #include <string.h>
 #include <stdlib.h>
+#include <dirent.h>
 #include "meusStruct.h"
 
 void listarTabela(){
@@ -34,10 +35,33 @@ void listarTabela(){
         printf("%s\t", leitura.colunaString);
         printf("%s\t", leitura.colunaChar);
         printf("%d\t", leitura.colunaInt);
-        printf("%d\t", leitura.colunaDouble);
-        printf("%ln\t", leitura.colunaFloat);
+        printf("%f\t", leitura.colunaDouble);
+        printf("%f\t", leitura.colunaFloat);
         printf("\n");
     }
 
     fclose(arquivo);
+}
+
+void listarTodasTabelas(const char *caminho){
+    struct dirent *entrada;
+    DIR *diretorio;
+
+    diretorio = opendir(caminho);
+
+    if (diretorio == NULL) {
+        perror("Erro ao abrir o diretório");
+        exit(EXIT_FAILURE);
+    }
+
+    printf("Listando as tabelas... \n");
+    printf("--------------------------\n");
+    while ((entrada = readdir(diretorio)) != NULL) {
+        // Ignorar arquivos com extensão .exe
+        if (strstr(entrada->d_name, ".exe") == NULL) {
+            printf("%s\n", entrada->d_name);
+        }
+    }
+    printf("--------------------------\n");
+    closedir(diretorio);
 }

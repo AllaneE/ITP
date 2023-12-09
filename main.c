@@ -5,6 +5,7 @@
 #include <stdlib.h>
 #include "meusStruct.h"
 #include "funcao_apagar_criar.h"
+#include "funcao_listar_editar.h"
 
 // função para listar todas as tabelas
 
@@ -18,6 +19,48 @@
 
 //função para apagar uma tabela
 
+//menu
+void menu(){
+    printf("+++++++++++++++++++++++\n");
+    printf("Digite 1 - Para criar uma tabela\n");
+    printf("Digite 2 - Para apagar uma tabela\n");
+    printf("Digite 3 - Para listar as tabelas\n");
+    printf("Digite 4 - Para editar uma tabela\n");
+    printf("+++++++++++++++++++++++\n");
+}
 int main(void){
+    const char *caminho = "..\\output";
+    int resposta_usuario;
+    int continua = 0;
+    char arquivo[50];
+    printf("Olá, seja bem-vindo ao SGBD ITP \n");
+    printf("O que deseja fazer?\n");
+    while(continua != 1){
+        menu();
+        scanf("%d", &resposta_usuario);
 
+        switch (resposta_usuario)
+        {
+        case 1:
+            criarTab();
+            break;
+        case 2:
+            printf("Que arquivo desejas apagar?\n");
+            scanf("%s", arquivo);
+            apagarArquivo(arquivo);
+            break;
+        case 3:
+            listarTodasTabelas(caminho);
+            break;
+        case 4:
+            
+            break;
+        default:
+            printf("numero invalido :(\n");
+            break;
+        }
+        printf("Se desejar sair do SGBD ITP digite: 1\n");
+        scanf("%d", &continua);
+    }
+    
 }

@@ -9,6 +9,7 @@ Tabela criarTab(){
     Tabela novaTabela;
     int numeroColuna;
     char resp[5];
+    int pkDefinida = 0;
 
     printf("Qual o nome da tabela?\n");
     scanf("%s", novaTabela.nomeTabela);
@@ -22,16 +23,21 @@ Tabela criarTab(){
         printf("Qual o nome da coluna?\n");
         scanf("%s", novaTabela.colunas[i].nomeColuna);
 
-        printf("A coluna é a chave primaria da coluna?(sim ou nao)\n");
-        scanf("%s", resp);
-        //transformar a resposta em minusculo para evitar erros
+        //define a chave primaria se nao houver uma ja definida
+        if(pkDefinida != 1){
+            printf("A coluna é a chave primaria da coluna?(sim ou nao)\n");
+            scanf("%s", resp);
+        }
+        //transforma a resposta em minusculo para evitar erros
         for (int j = 0; resp[j] != '\0'; j++) {
             resp[j] = tolower(resp[j]);
         }
 
-        // converter a resposta em valores inteiros
+        // converte a resposta em valores inteiros
         if (strcmp(resp,"sim") == 0) {
             novaTabela.colunas[i].chavePrimaria = 1;
+            //a chave primaria foi definida entao nao perguntamos mais
+            pkDefinida = 1;
         }else{
             novaTabela.colunas[i].chavePrimaria = 0;
         } 
