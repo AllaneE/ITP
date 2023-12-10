@@ -3,7 +3,7 @@
 #include <stdlib.h>
 #include "meusStruct.h"
 //Criar nova linha na tabela
-/*void novaLinha(const Tabela *tabela){ 
+void novaLinha(const Tabela *tabela){ 
     Linha novaLinha;
     int i;
     for(i = 0 ; i< tabela->numeroColuna ; i++){
@@ -49,7 +49,7 @@
     }
 
     
-    a. Usuário deve informar o nome da tabela (recebe como atributo o nome da tabela)
+    /*a. Usuário deve informar o nome da tabela (recebe como atributo o nome da tabela)
     b. sistema deve solicitar os valores de cada uma das colunas
     c. sistema deve verificar a chave primária
         i. Em uma tabela deve existir um e apenas um valor de chave
@@ -57,4 +57,4 @@
         sistema deve emitir uma mensagem de erro e não deve inserir
         o registro */
 
-//}
+}

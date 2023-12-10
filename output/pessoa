@@ -1,0 +1,19 @@
+Nome da Tabela: pessoa
+Número de Colunas: 4
+Coluna 1:
+	Nome da Coluna: idade
+	Tipo de Dado: 0
+	Chave Primária: Não
+Coluna 2:
+	Nome da Coluna: nome
+	Tipo de Dado: 4
+	Chave Primária: Não
+Coluna 3:
+	Nome da Coluna: cpf
+	Tipo de Dado: 0
+	Chave Primária: Sim
+Coluna 4:
+	Nome da Coluna: sexo
+	Tipo de Dado: 3
+	Chave Primária: Não
+Número da Linha: 36175880

@@ -3,6 +3,7 @@
 #include <stdio.h>
 #include <string.h>
 #include <stdlib.h>
+#include <dirent.h>
 #include "meusStruct.h"
 #include "funcao_apagar_criar.h"
 #include "funcao_listar_editar.h"
@@ -43,6 +44,7 @@ int main(void){
         switch (resposta_usuario)
         {
         case 1:
+            printf("entrou no if");
             criarTab();
             break;
         case 2:
@@ -57,6 +59,11 @@ int main(void){
             printf("Que arquivo desejas listar?\n");
             scanf("%s", nomeArquivo);
             listarDadosTabela(nomeArquivo);
+            break;
+        case 5:
+            printf("A que tabela desejas adicionar linhas?\n");
+            scanf("%s", nomeArquivo);
+            novaLinha(&nomeArquivo);
             break;
         default:
             printf("numero invalido :(\n");
