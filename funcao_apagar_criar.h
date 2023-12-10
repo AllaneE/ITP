@@ -73,20 +73,6 @@ Tabela criarTab(){
     return novaTabela;
 }
 
-//Criar nova linha na tabela
-//void novaLinha(const char *nomeArquivo){
-    
-    /* 
-    a. Usuário deve informar o nome da tabela (recebe como atributo o nome da tabela)
-    b. sistema deve solicitar os valores de cada uma das colunas
-    c. sistema deve verificar a chave primária
-        i. Em uma tabela deve existir um e apenas um valor de chave
-        primária. Se o usuário informar uma chave que já existe,
-        sistema deve emitir uma mensagem de erro e não deve inserir
-        o registro */
-
-//}
-
 //Apaga um arquivo
 void apagarArquivo(const char *nomeArquivo) {
     if(remove(nomeArquivo)==0){

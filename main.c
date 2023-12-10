@@ -28,13 +28,14 @@ void menu(){
     printf("Digite 4 - Para listar dados de uma tabela\n");
     printf("+++++++++++++++++++++++\n");
 }
+
 int main(void){
     const char *caminho = "..\\output";
     int resposta_usuario;
     int continua = 0;
     char nomeArquivo[50];
     printf("Olá, seja bem-vindo ao SGBD ITP \n");
-    printf("O que deseja fazer?\n");
+    
     while(continua != 1){
         menu();
         scanf("%d", &resposta_usuario);

@@ -4,7 +4,7 @@
 #include <dirent.h>
 #include "meusStruct.h"
 
-void listarTabela(){
+/*void listarTabela(){
     char nomeTabela[50];
     printf("Qual o nome da tabela?\n");
     scanf("%s", nomeTabela);
@@ -41,7 +41,7 @@ void listarTabela(){
     }
 
     fclose(arquivo);
-}
+}*/
 
 void listarTodasTabelas(const char *caminho){
     struct dirent *entrada;
