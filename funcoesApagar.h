@@ -9,7 +9,7 @@ void apagarTupla() {
     FILE *arquivo, *temp;
     char nomeTabela[50];
     char chavePrimaria[50];
-    char linha[100];  // Ajuste o tamanho conforme necessário
+    char linha[100];  
 
     printf("Digite o nome da tabela: ");
     scanf("%s", nomeTabela);
@@ -53,7 +53,7 @@ void apagarTupla() {
 void apagarTabela() {
     FILE *arquivo, *temp;
     char nomeTabela[50];
-    char linha[100];  // Ajuste o tamanho conforme necessário
+    char linha[100]; 
 
     printf("Digite o nome da tabela a ser apagada: ");
     scanf("%s", nomeTabela);

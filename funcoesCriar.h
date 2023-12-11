@@ -7,6 +7,7 @@
 // Função para criar uma tabela
 void criarTabela(Tabela *tabela) {
     FILE *arquivo;
+    FILE *tabelasArquivo;
 
     printf("Digite o nome da tabela: ");
     scanf("%s", tabela->nome);
@@ -36,55 +37,75 @@ void criarTabela(Tabela *tabela) {
         printf("Digite o tipo da coluna %d (char, int, float, double, string): ", i + 1);
         scanf("%s", tabela->colunas[i].tipo);
         fprintf(arquivo, "%s ", tabela->colunas[i].tipo);
-
-        // Aqui seria o lugar para tratar o tipo string e seu tamanho, se necessário
     }
 
     fclose(arquivo);
+
+    // Abrir arquivo "tabelas.txt" para adicionar o nome da nova tabela
+    tabelasArquivo = fopen("tabelas.txt", "a");
+    if (tabelasArquivo == NULL) {
+        printf("Erro ao abrir o arquivo das tabelas.\n");
+        exit(1);
+    }
+
+    // Escrever o nome da tabela no arquivo de tabelas
+    fprintf(tabelasArquivo, "%s\n", tabela->nome);
+
+    fclose(tabelasArquivo);
 
     printf("Tabela criada com sucesso!\n");
 }
 
 // Função para adicionar uma nova linha na tabela
 void adicionarLinha(Tabela *tabelas, int numTabelas) {
-    FILE *arquivo;
     char nomeTabela[50];
-    char linha[100];  // Ajuste o tamanho conforme necessário
+    char linha[100];
 
-    printf("Escolha a tabela para adicionar uma linha:\n");
+   FILE *arquivoTabelas = fopen("tabelas.txt", "r");
 
-    for (int i = 0; i < numTabelas; ++i) {
-        printf("%d. %s\n", i + 1, tabelas[i].nome);
-    }
-
-    int escolha;
-    printf("Digite o número correspondente à tabela: ");
-    scanf("%d", &escolha);
-
-    if (escolha < 1 || escolha > numTabelas) {
-        printf("Escolha inválida.\n");
+    if (arquivoTabelas == NULL) {
+        printf("Erro ao abrir o arquivo das tabelas.\n");
         return;
     }
 
-    strcpy(nomeTabela, tabelas[escolha - 1].nome);
+    printf("Digite o nome da tabela: ");
+    scanf("%s", nomeTabela);
 
-    // Abrir arquivo da tabela para adição de linha
-    arquivo = fopen(nomeTabela, "a");
+    int tabelaEncontrada = 0;
+
+    // Verificar se o nome da tabela existe no arquivo "tabelas.txt"
+    while (fscanf(arquivoTabelas, "%s", linha) == 1) {
+        if (strcmp(linha, nomeTabela) == 0) {
+            tabelaEncontrada = 1;
+            break;
+        }
+    }
+
+    fclose(arquivoTabelas);
+
+    if (!tabelaEncontrada) {
+        printf("Tabela não encontrada.\n");
+        return;
+    }
+
+    FILE *arquivo = fopen(nomeTabela, "a");
+
     if (arquivo == NULL) {
         printf("Erro ao abrir o arquivo da tabela '%s'.\n", nomeTabela);
-        exit(1);
+        return;
     }
 
-    // Adicionar uma linha
-    for (int i = 0; i < tabelas[escolha - 1].numColunas; ++i) {
-        printf("Digite o valor para a coluna %s: ", tabelas[escolha - 1].colunas[i].nome);
-        scanf("%s", linha);
-        fprintf(arquivo, "%s ", linha);
-    }
+    printf("Adicionando uma nova linha na tabela '%s':\n", nomeTabela);
 
-    fprintf(arquivo, "\n");
+    // Solicitar os valores para cada coluna da nova linha
+    printf("Digite os valores para cada coluna separados por espaços:\n");
+    scanf(" %[^\n]", linha);
+
+    // Adicionar a nova linha ao arquivo da tabela
+    fprintf(arquivo, "%s\n", linha);
 
     fclose(arquivo);
 
     printf("Linha adicionada com sucesso na tabela '%s'!\n", nomeTabela);
 }
+
