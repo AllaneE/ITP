@@ -34,6 +34,7 @@ void listarDadosTabela() {
 
     printf("Digite o nome da tabela: ");
     scanf("%s", nomeTabela);
+    printf("\nListando dados de %s...\n\n" , nomeTabela);
 
     // Abrir o arquivo correspondente à tabela
     arquivo = fopen(nomeTabela, "r");
@@ -43,9 +44,26 @@ void listarDadosTabela() {
     }
 
     // Ler e imprimir os dados da tabela
+    int contador = 0;
     while (fgets(linha, sizeof(linha), arquivo) != NULL) {
-        printf("%s", linha);
-    }
+        switch (contador)
+        {
+        case 0:
+            printf("Chave primaria: ");
+            printf("%s", linha);
+            break;
+        case 1:
+            printf("Numero de colunas: ");
+            printf("%s", linha);
+            break;
+        default:   
+            printf("%s", linha);
+            break;
+        }
+        printf("\n");
 
+        contador++;
+    }
+    printf("\n");
     fclose(arquivo);
 }

@@ -38,7 +38,7 @@ void criarTabela(Tabela *tabela) {
         scanf("%s", tabela->colunas[i].tipo);
         fprintf(arquivo, "%s ", tabela->colunas[i].tipo);
     }
-
+    fprintf(arquivo, "\n");
     fclose(arquivo);
 
     // Abrir arquivo "tabelas.txt" para adicionar o nome da nova tabela
