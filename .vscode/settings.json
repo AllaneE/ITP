@@ -2,6 +2,8 @@
     "C_Cpp.default.compilerPath": "C:\\MinGW\\bin\\gcc.exe",
     "files.associations": {
         "funcao_apagar_criar.h": "c",
-        "ctype.h": "c"
+        "ctype.h": "c",
+        "stdio.h": "c",
+        "string.h": "c"
     }
 }
