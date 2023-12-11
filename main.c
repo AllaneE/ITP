@@ -1,76 +1,59 @@
 //Banco de Dados de ITP
-
+//Por Allane e Ignacio 😎
 #include <stdio.h>
 #include <string.h>
 #include <stdlib.h>
 #include <dirent.h>
-#include "meusStruct.h"
-#include "funcao_apagar_criar.h"
-#include "funcao_listar_editar.h"
+#include "structs.h"
+#include "funcoesApagar.h"
+#include "funcoesCriar.h"
+#include "funcoesListar.h"
+#include "funcoesPesquisa.h"
 
-// função para listar todas as tabelas
+int main() {
+    Tabela tabelas[10]; // Assumindo no máximo 10 tabelas
+    int numTabelas = 0;
 
-//função para criar nova linha na tabela
+    // Menu principal
+    int escolha;
+    do {
+        printf("\n1. Criar uma tabela\n2. Listar todas as tabelas\n3. Adicionar uma nova linha na tabela\n");
+        printf("4. Listar todos os dados de uma tabela\n5. Pesquisar valor em uma tabela\n6. Apagar uma tupla de uma tabela\n");
+        printf("7. Apagar uma tabela\n0. Sair\nEscolha: ");
+        scanf("%d", &escolha);
 
-//função para listar todos os dados da tabela
-
-//função para pesquisar valor em uma tabela
-
-//função para apagar uma trupla, apagar auma linha, de uma tabela
-
-//função para apagar uma tabela
-
-//menu
-void menu(){
-    printf("+++++++++++++++++++++++\n");
-    printf("Digite 1 - Para criar uma tabela\n");
-    printf("Digite 2 - Para apagar uma tabela\n");
-    printf("Digite 3 - Para listar as tabelas\n");
-    printf("Digite 4 - Para listar dados de uma tabela\n");
-    printf("+++++++++++++++++++++++\n");
-}
-
-int main(void){
-    const char *caminho = "..\\output";
-    int resposta_usuario;
-    int continua = 0;
-    char nomeArquivo[50];
-    printf("Olá, seja bem-vindo ao SGBD ITP \n");
-    
-    while(continua != 1){
-        menu();
-        scanf("%d", &resposta_usuario);
-
-        switch (resposta_usuario)
-        {
-        case 1:
-            printf("entrou no if");
-            criarTab();
-            break;
-        case 2:
-            printf("Que arquivo desejas apagar?\n");
-            scanf("%s", nomeArquivo);
-            apagarArquivo(nomeArquivo);
-            break;
-        case 3:
-            listarTodasTabelas(caminho);
-            break;
-        case 4:
-            printf("Que arquivo desejas listar?\n");
-            scanf("%s", nomeArquivo);
-            listarDadosTabela(nomeArquivo);
-            break;
-        case 5:
-            printf("A que tabela desejas adicionar linhas?\n");
-            scanf("%s", nomeArquivo);
-            novaLinha(&nomeArquivo);
-            break;
-        default:
-            printf("numero invalido :(\n");
-            break;
+        switch (escolha) {
+            case 1:
+                criarTabela(&tabelas[numTabelas]);
+                numTabelas++;
+                break;
+            case 2:
+                //nao funciona ainda
+                listarTabelas(tabelas, numTabelas);
+                break;
+            case 3:
+                //n funciona ainda
+                adicionarLinha(tabelas, numTabelas);
+                break;
+            case 4:
+                listarDadosTabela(tabelas, numTabelas);
+                break;
+            case 5:
+                pesquisarValor(tabelas, numTabelas);
+                break;
+            case 6:
+                apagarTupla(tabelas, numTabelas);
+                break;
+            case 7:
+                apagarTabela(tabelas, &numTabelas);
+                break;
+            case 0:
+                printf("Saindo do programa.\n");
+                break;
+            default:
+                printf("Escolha inválida. Tente novamente.\n");
         }
-        printf("Se desejar sair do SGBD ITP digite: 1\n");
-        scanf("%d", &continua);
-    }
-    
+    } while (escolha != 0);
+
+    return 0;
 }
